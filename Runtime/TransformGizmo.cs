@@ -163,8 +163,9 @@ namespace RuntimeGizmos
 			}else{
 				SetNearAxis();
 			}
-			
-			GetTarget();
+
+            // This deactivates the selection system
+			//GetTarget();
 
 			if(mainTargetRoot == null) return;
 			
@@ -672,7 +673,9 @@ namespace RuntimeGizmos
 				if(addCommand) UndoRedoManager.Insert(new AddTargetCommand(this, target, targetRootsOrdered));
 
 				AddTargetRoot(target);
-				AddTargetHighlightedRenderers(target);
+
+                // Deactivate the highlight system
+				//AddTargetHighlightedRenderers(target);
 
 				SetPivotPoint();
 			}
@@ -686,8 +689,9 @@ namespace RuntimeGizmos
 
 				if(addCommand) UndoRedoManager.Insert(new RemoveTargetCommand(this, target));
 
-				RemoveTargetHighlightedRenderers(target);
-				RemoveTargetRoot(target);
+                // Deactivate the highlight system
+                //RemoveTargetHighlightedRenderers(target);
+                RemoveTargetRoot(target);
 
 				SetPivotPoint();
 			}
