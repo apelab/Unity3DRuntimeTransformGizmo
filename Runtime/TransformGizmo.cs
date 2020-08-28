@@ -360,7 +360,7 @@ namespace RuntimeGizmos
 				if(nearAxis != Axis.None &&
 #if UNITY_STANDALONE || UNITY_EDITOR
                 Input.GetMouseButtonDown(0)
-#elif UNITY_ANDROID
+#elif UNITY_ANDROID || UNITY_IOS
                  Input.touchCount == 1 && Input.touches[0].phase == TouchPhase.Began
 #endif
                 )
@@ -398,14 +398,14 @@ namespace RuntimeGizmos
 			while(
 #if UNITY_STANDALONE || UNITY_EDITOR
                 !Input.GetMouseButtonUp(0)
-#elif UNITY_ANDROID
+#elif UNITY_ANDROID || UNITY_IOS
                 Input.touchCount == 1 && Input.touches[0].phase != TouchPhase.Ended
 #endif
                 )
             {
 #if UNITY_STANDALONE || UNITY_EDITOR
                 Ray mouseRay = myCamera.ScreenPointToRay(Input.mousePosition);
-#elif UNITY_ANDROID
+#elif UNITY_ANDROID || UNITY_IOS
                 Ray mouseRay = myCamera.ScreenPointToRay(Input.GetTouch(0).position);
 #endif
                 Vector3 mousePosition = Geometry.LinePlaneIntersect(mouseRay.origin, mouseRay.direction, originalPivot, planeNormal);
@@ -536,7 +536,7 @@ namespace RuntimeGizmos
 						{
 #if UNITY_STANDALONE || UNITY_EDITOR
                             Vector3 rotation = transform.TransformDirection(new Vector3(Input.GetAxis("Mouse Y"), -Input.GetAxis("Mouse X"), 0));
-#elif UNITY_ANDROID
+#elif UNITY_ANDROID || UNITY_IOS
                             Vector3 rotation = transform.TransformDirection(new Vector3(Input.GetTouch(0).deltaPosition.y, -Input.GetTouch(0).deltaPosition.x, 0));
 #endif
                             Quaternion.Euler(rotation).ToAngleAxis(out rotateAmount, out rotationAxis);
@@ -1045,7 +1045,7 @@ namespace RuntimeGizmos
 			{
 #if UNITY_STANDALONE || UNITY_EDITOR
                 Ray mouseRay = myCamera.ScreenPointToRay(Input.mousePosition);
-#elif UNITY_ANDROID
+#elif UNITY_ANDROID || UNITY_IOS
                 if (Input.touchCount != 1)
                 {
                     return;
@@ -1062,7 +1062,7 @@ namespace RuntimeGizmos
 		{
 #if UNITY_STANDALONE || UNITY_EDITOR
             Ray mouseRay = myCamera.ScreenPointToRay(Input.mousePosition);
-#elif UNITY_ANDROID
+#elif UNITY_ANDROID || UNITY_IOS
             if (Input.touchCount != 1)
             {
                 return float.MaxValue;
@@ -1092,7 +1092,7 @@ namespace RuntimeGizmos
 			{
 #if UNITY_STANDALONE || UNITY_EDITOR
                 Ray mouseRay = myCamera.ScreenPointToRay(Input.mousePosition);
-#elif UNITY_ANDROID
+#elif UNITY_ANDROID || UNITY_IOS
                 if (Input.touchCount != 1)
                 {
                     return closestDistance;
