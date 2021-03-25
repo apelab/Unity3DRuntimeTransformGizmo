@@ -552,7 +552,7 @@ namespace RuntimeGizmos
 							}
 						}
 
-						if(isSnapping && rotationSnap > 0)
+						if(rotationSnap > 0)
 						{
 							currentSnapRotationAmount += rotateAmount;
 							rotateAmount = 0;
